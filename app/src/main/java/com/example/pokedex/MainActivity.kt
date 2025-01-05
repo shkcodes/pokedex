@@ -49,7 +49,9 @@ private fun MainApp() {
                 }
             }
             composable<PokemonDetails> { backStackEntry ->
-                PokemonDetailsScreen(backStackEntry.toRoute())
+                PokemonDetailsScreen(backStackEntry.toRoute(), close = {
+                    navController.navigateUp()
+                })
             }
         }
     }

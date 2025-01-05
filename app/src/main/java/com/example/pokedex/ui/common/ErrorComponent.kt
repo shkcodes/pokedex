@@ -11,9 +11,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ErrorComponent(errorMessage: String) {
+fun ErrorComponent(errorMessage: String, modifier: Modifier = Modifier) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp), contentAlignment = Alignment.Center
     ) {
