@@ -7,18 +7,18 @@ import com.squareup.moshi.JsonClass
 data class ApiPokemonDetails(
     val name: String,
     val height: Int,
-    val sprites: PokemonSprites
+    val sprites: ApiPokemonSprites
 )
 
 @JsonClass(generateAdapter = true)
-data class PokemonSprites(
-    val other: OtherSprites
+data class ApiPokemonSprites(
+    val other: ApiOtherSprites
 )
 
 @JsonClass(generateAdapter = true)
-data class OtherSprites(
-    val home: HomeSprites
+data class ApiOtherSprites(
+    val home: ApiHomeSprites
 )
 
 @JsonClass(generateAdapter = true)
-data class HomeSprites(@Json(name = "front_default") val frontDefault: String)
+data class ApiHomeSprites(@Json(name = "front_default") val frontDefault: String)
