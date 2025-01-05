@@ -7,11 +7,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
+import com.example.pokedex.Screen.PokemonDetails
+import com.example.pokedex.Screen.PokemonList
+import com.example.pokedex.ui.details.PokemonDetailsScreen
+import com.example.pokedex.ui.list.PokemonListScreen
 import com.example.pokedex.ui.theme.PokedexTheme
+import kotlinx.serialization.Serializable
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +26,37 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PokedexTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                MainApp()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+private fun MainApp() {
+    val navController = rememberNavController()
+    Scaffold(modifier = Modifier.fillMaxSize()) {
+        NavHost(
+            navController = navController,
+            startDestination = PokemonList,
+            modifier = Modifier.padding(it)
+        ) {
+            composable<PokemonList> {
+                PokemonListScreen { id ->
+                    navController.navigate(PokemonDetails(id))
+                }
+            }
+            composable<PokemonDetails> { backStackEntry ->
+                PokemonDetailsScreen(backStackEntry.toRoute())
+            }
+        }
+    }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PokedexTheme {
-        Greeting("Android")
-    }
+sealed interface Screen {
+    @Serializable
+    data object PokemonList : Screen
+
+    @Serializable
+    data class PokemonDetails(val pokemonId: String) : Screen
 }

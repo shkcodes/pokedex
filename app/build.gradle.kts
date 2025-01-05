@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -71,6 +73,7 @@ dependencies {
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.moshi.core)
     ksp(libs.moshi.codegen)
+    implementation(libs.kotlin.serialization)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.test)
