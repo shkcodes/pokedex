@@ -18,8 +18,10 @@ import com.example.pokedex.Screen.PokemonList
 import com.example.pokedex.ui.details.PokemonDetailsScreen
 import com.example.pokedex.ui.list.PokemonListScreen
 import com.example.pokedex.ui.theme.PokedexTheme
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.serialization.Serializable
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
