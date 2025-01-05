@@ -14,6 +14,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -24,6 +25,8 @@ import com.example.pokedex.R
 import com.example.pokedex.domain.PokemonListUiModel
 import com.example.pokedex.ui.common.ErrorComponent
 import com.example.pokedex.ui.common.LoadingIndicator
+
+const val POKEMON_LIST_TEST_TAG = "pokemon_list"
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,7 +63,9 @@ private fun PokemonList(
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = modifier.padding(horizontal = 16.dp)
+        modifier = modifier
+            .padding(horizontal = 16.dp)
+            .testTag(POKEMON_LIST_TEST_TAG)
     ) {
         items(pokemons) {
             Card(modifier = Modifier

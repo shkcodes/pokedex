@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -85,6 +86,7 @@ private fun PokemonDetails(uiModel: PokemonDetailsUiModel, modifier: Modifier = 
         AsyncImage(
             model = uiModel.imageUrl,
             contentDescription = null,
+            modifier = Modifier.size(250.dp)
         )
         Text(
             stringResource(R.string.pokemon_name, uiModel.name),
